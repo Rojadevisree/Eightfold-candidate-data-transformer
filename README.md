@@ -52,3 +52,5 @@ cd..
 ```bash
 pytest tests/test_pipeline.py
 ```
+
+> **Note:** GitHub profile extraction uses the public GitHub REST API. An internet connection is required when processing `github_usernames.txt`.
