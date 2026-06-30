@@ -1,0 +1,7 @@
+{
+  "fields": [
+    { "path": "name", "from": "full_name", "type": "string", "required": true }
+  ],
+  "include_confidence": false,
+  "on_missing": "omit"
+}
