@@ -8,7 +8,7 @@ The pipeline ingests candidate information from heterogeneous sources, normalize
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<Rojadevisree>/Eightfold-candidate-data-transformer.git
+git clone https://github.com/Rojadevisree/Eightfold-candidate-data-transformer.git
 cd Eightfold-candidate-data-transformer
 ```
 
