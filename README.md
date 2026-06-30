@@ -9,6 +9,8 @@ The pipeline ingests candidate information from heterogeneous sources, normalize
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/Rojadevisree/Eightfold-candidate-data-transformer.git
+```
+```bash
 cd Eightfold-candidate-data-transformer
 ```
 
@@ -37,15 +39,16 @@ pip install -r requirements.txt
 ### 5. Run the Pipeline
 ```bash
 cd src
+```
+```bash
 python pipeline.py --inputs "..\sample_inputs\recruiter_export.csv" --config "..\sample_inputs\config_default.json" --out "..\sample_inputs\output_default.json"
 ```
 
 ### 5. Run the tests
 From the project root:
 ```bash
-pytest
+cd..
 ```
-or
 ```bash
 pytest tests/test_pipeline.py
 ```
