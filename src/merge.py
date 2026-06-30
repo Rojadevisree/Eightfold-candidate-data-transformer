@@ -1,6 +1,7 @@
 from typing import List, Dict
 from rapidfuzz import fuzz
 from models import CandidateProfile, ProvenanceEntry, Skill
+from confidence import score_field, tier_for_score
 from normalize import normalize_phone, normalize_email, normalize_whitespace, normalize_skill
 
 def records_match(a: Dict, b: Dict) -> bool:
@@ -79,6 +80,17 @@ def build_candidate(group: List[Dict], candidate_id: str) -> CandidateProfile:
         provenance.append(ProvenanceEntry(field="phones", source=phone_src, method="normalize_phone_e164"))
     if headline_val:
         provenance.append(ProvenanceEntry(field="headline", source=headline_src, method="source_priority"))
+        
+    confidence_scores = {}
+    if norm_email:
+        confidence_scores["emails"] = score_field(group, "email", email_src, norm_email)
+    if norm_phone:
+        confidence_scores["phones"] = score_field(group, "phone", phone_src, norm_phone)
+    if headline_val:
+        confidence_scores["headline"] = score_field(group, "headline", headline_src, headline_val)
+
+    overall = round(sum(confidence_scores.values()) / len(confidence_scores), 3) if confidence_scores else None
+    status = tier_for_score(overall) if overall is not None else None
 
     return CandidateProfile(
         candidate_id=candidate_id,
@@ -86,6 +98,9 @@ def build_candidate(group: List[Dict], candidate_id: str) -> CandidateProfile:
         emails=[norm_email] if norm_email else [],
         phones=[norm_phone] if norm_phone else [],
         headline=normalize_whitespace(headline_val),
+        confidence=confidence_scores,
+        overall_confidence=overall,
+        validation_status=status,
         provenance=provenance,
     )
 
