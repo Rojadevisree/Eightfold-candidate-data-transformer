@@ -12,22 +12,32 @@ git clone https://github.com/Rojadevisree/Eightfold-candidate-data-transformer.g
 cd Eightfold-candidate-data-transformer
 ```
 
-### 2. Create and activate a virtual environment
-**Windows (PowerShell)**
-```powershell
+### 2. Create a Virtual Environment
+
+```bash
 python -m venv venv
+```
+
+### 3. Activate the Virtual Environment
+**PowerShell (VS Code default)**
+```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-### 3. Install dependencies
+**Command Prompt (cmd)**
+```cmd
+venv\Scripts\activate
+```
+
+### 4. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the pipeline
+### 5. Run the Pipeline
 ```bash
 cd src
-python pipeline.py
+python pipeline.py --inputs "..\sample_inputs\recruiter_export.csv" --config "..\sample_inputs\config_default.json" --out "..\sample_inputs\output_default.json"
 ```
 
 ### 5. Run the tests
